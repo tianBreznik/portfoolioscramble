@@ -1,0 +1,238 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body
+{
+    overflow: hidden;
+}
+
+p {
+	font-family: Verdana;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: 0.78rem;
+	background-image: none !important;
+}
+
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.logo {
+  position: absolute;
+	width: 175px;
+  left: 1em;
+  top: 1em;
+  height: 40px;
+  display: block;
+  border-radius: 2.5px;
+}
+
+
+
+.logo #title
+{
+	font-size: 0.92rem;
+	font-weight: bold;
+  border: transparent;
+  display: inline-block;
+  background-color: transparent;
+	/*color: #5d5d5d;*/
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.logo #title a 
+{
+	font-size: 0.92rem;
+	font-weight: bold;
+  width: 175px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-family: Verdana;
+}
+
+button:hover.blue-a {
+	color: rgba(230, 240, 255, 0.99);
+  box-shadow: 0 1px 0 0 rgba(255, 116, 116, 0.4) inset, 0 2px 6px rgba(0, 0, 0, 0.5), rgba(255, 85, 150, 0.75), 0 0px 10px 2px rgba(255, 70, 101, 0.75) inset;
+}
+
+button.blue-a {
+	width: 175px;
+	cursor: pointer;
+	padding-top: 10px;
+  padding-bottom: 10px;
+	background-color: rgba(255, 255, 255, 0.0);
+  height: 40px;
+	/*background: linear-gradient(to top,
+                #D8D8D8 10%,
+                #D8D8D8 20%,
+                #CECECE 30%,
+                #CBCBCB 40%,
+                #CBCBCB 50%,
+                #D5D5D5 60%,
+                #D4D4D4 70%,
+                #E9E9E9 80%,
+                #E9E9E9 90%,
+                #F2F2F2 100%
+    );*/
+	border-radius: 2.5px; 
+	/*border: 1px solid rgba(0, 0, 0, 1);
+    box-shadow: inset 6px 0px 6px 0px rgba(0, 0, 0, 0.13), 
+    inset -6px 0px 6px 0px rgba(0, 0, 0, 0.13), 
+    3px 0px 15px 0px rgba(0, 0, 0, 0.75);*/
+  box-shadow: inset 12px 0px 12px 0px #fffbd6 , inset -12px 0px 12px 0px #FFFDEB , 6px 0px 30px 0px #FFFFFF;
+  border: 1px solid /*#8D8D8D*/ rgba(0, 0, 0, 0.5);
+}
+
+button:hover.blue-a {
+	color: rgba(230, 240, 255, 0.99);
+  text-shadow: 0px 0px 2px rgb(255, 132, 132), 0px 0px 4px rgba(255, 156, 185, 0.99);
+	border-color: 2.5px solid rgba(120, 200, 255, 0.4);
+	box-shadow: 0 1px 0 0 rgba(255, 116, 116, 0.4) inset, 0 2px 6px rgba(0, 0, 0, 0.5),
+		/*0 10px rgba(0, 0, 0, 0.05) inset,*/ 0 0px 5px 2px rgba(255, 85, 150, 0.75), 0 0px 10px 2px rgba(255, 70, 101, 0.75) inset;	
+  cursor: pointer;
+  /* border-radius: 2.5px; */
+  border-top-left-radius: 2.5px;
+  border-top-right-radius: 2.5px;
+}
+
+button:hover a#home {
+	color: rgba(230, 240, 255, 0.99);
+}
+
+.menu a:hover {
+	color: rgba(230, 240, 255, 0.99);
+  text-shadow: 0px 0px 2px rgb(255, 132, 132), 0px 0px 4px rgba(255, 156, 185, 0.99);
+	border-color: rgba(120, 200, 255, 0.75);
+}
+
+.menu {
+  position: absolute;
+	width: 173px;
+  height: 252px;
+  top: 3.5em;
+  left: 1em;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	z-index: 4;
+  background: rgba(255, 255, 255, 0);
+  box-shadow: inset 12px 0px 12px 0px #fffbd6 , inset -12px 0px 12px 0px #FFFDEB , 6px 0px 30px 0px #FFFFFF;
+	/* border-radius: 2.5px; */
+	border: 1px solid /*#8D8D8D*/ rgba(0, 0, 0, 0.5);
+  display: none;
+  border-top: none;
+  border-bottom-left-radius: 2.5px;
+  border-bottom-right-radius: 2.5px;
+}
+
+.menu ul li a {
+	display: block;
+  list-style-type: disc;
+	padding: 4px 0px 2px 40px;
+	background-position: 18px 3px;
+	text-transform: capitalize;
+	text-decoration: none;
+}
+
+ul.menu2 {
+	margin-left: 10px;
+	margin-right: 10px;
+  height: 230px;
+}
+
+.inside {
+	margin-top: 10px;
+}
+
+li.list {
+	margin: 20px;
+	list-style: none;
+}
+
+.menu a {
+  /*font-size: 9px;*/
+  font-family: times;
+  font-style: italic;
+}
+
+/* (A) FIXED WRAPPER */
+.hwrap {
+    position: absolute;
+    width: 85%;
+    height: 38px;
+    overflow: hidden;
+    left: 13em;
+    top: 1em;
+    border: 1px solid /*#8D8D8D*/ rgba(0, 0, 0, 0.5);
+    border-radius: 2.5px;
+    background: rgba(255, 255, 255, 0);
+    float: right;
+    box-shadow: inset 12px 0px 12px 0px #fffbd6 , inset -12px 0px 12px 0px #FFFDEB , 6px 0px 30px 0px #FFFFFF;
+  }
+
+  /* (A) FIXED WRAPPER 
+.nino {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  left: 87.75em;
+  top: 1em;
+  border: 0.5px solid #0e0adf;
+  border-radius: 2.5px;
+  float: right;
+  box-shadow: inset 6px 0px 6px 0px rgba(14, 38, 248, 0.13), inset -6px 0px 6px 0px rgba(14, 38, 248, 0.13), 3px 0px 15px 0px rgba(2, 19, 255, 0.685);
+}
+*/
+
+  .hwrap:hover {
+    border: 1.5px solid rgb(255, 255, 255);
+    box-shadow: inset 6px 0px 6px 0px rgba(255, 255, 255, 0.13), inset -6px 0px 6px 0px rgba(29, 172, 255, 0.281), 6px 0px 15px 0px rgba(161, 255, 255, 0.685);
+}
+   
+  /* (B) MOVING TICKER WRAPPER */
+  .hmove { display: flex; }
+  
+  /* (C) ITEMS - INTO A LONG HORIZONTAL ROW */
+  .hitem {
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6.5px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+   
+  /* (D) ANIMATION - MOVE ITEMS FROM RIGHT TO LEFT */
+  /* 4 ITEMS -400%, CHANGE THIS IF YOU ADD/REMOVE ITEMS */
+  @keyframes tickerh {
+    0% { transform: translate3d(100%, 0, 0); }
+    100% { transform: translate3d(-400%, 0, 0); }
+  }
+  .hmove { animation: tickerh linear 30s infinite; }
+
+  .hmove:hover { 
+      animation-play-state: paused;
+      color: rgba(230, 240, 255, 0.99);
+      text-shadow: 0px 0px 2px rgb(255, 132, 132), 0px 0px 4px rgba(255, 156, 185, 0.99);
+      border-color:  rgba(255, 3, 3, 0.4);
+      cursor: pointer;
+     }
+
