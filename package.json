@@ -8,6 +8,7 @@
   "dependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
+    "@magenta/sketch": "^0.2.0",
     "babel-loader": "^8.2.3",
     "cannon": "^0.6.2",
     "cannon-es": "^0.18.0",

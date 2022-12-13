@@ -49,14 +49,19 @@ const params = {
   };
 
   var params_bloom = {
-    exposure: 1.3,
-    bloomStrength: 1.3,
+    exposure: 0.3,
+    bloomStrength: 1.2,
     bloomThreshold: 0.57,
     bloomRadius: 0.1
 };
 
+// gui.add(params_bloom, 'exposure', 0, 3)
+// gui.add(params_bloom, 'bloomStrength', 0, 3)
+// gui.add(params_bloom, 'bloomThreshold', 0, 1)
+// gui.add(params_bloom, 'bloomRadius', 0, 1)
 
-        
+var xOff=0, yOff=0;
+
 const hdrEquirect = new RGBELoader()
   .load( HDR, function () {
 
@@ -248,119 +253,107 @@ function init() {
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.phisicallyCorrectLights = true;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = params.exposure;
+    renderer.toneMappingExposure = params.exposure * 2.7;
     renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth/2, window.innerHeight);
     container = document.getElementById('ThreeJS');
     container.appendChild(renderer.domElement);
-    lightup = document.getElementById("lightup");
     document.addEventListener('mousedown', onDocumentMouseDown, false);
     window.addEventListener('resize', onWindowResize, false);
-    // lightup.addEventListener('mouseover', function(e) {
-    //     // Sets the current target's (element) background color to green.
-    //     console.log("ew")
-    //     nino_moving = true;
-    //     gsap.to(nino.rotation,
-    //         {
-    //             duration: 1.0,
-    //             y: "+=6.0",
-    //             x: "-=0.1"
-    //         }
-    //     )
-    //     nino.updateMatrix();
-    //   })
 
-    //   lightup.addEventListener("mouseout", function( event ) {
-    //     nino_moving = false;
-    //   })
+    var canvas_got = document.getElementsByTagName('canvas');
+    console.log(canvas_got);
+    xOff = canvas_got.scrollLeft - canvas_got.offsetLeft;
+    yOff = canvas_got.scrollTop - canvas_got.offsetTop;
 
+    
+    console.log(xOff);
 
     controls = new OrbitControls(camera, renderer.domElement);
     renderer.setClearColor (0xffffff, 1);
 
     var light = new THREE.PointLight(0xffffff, 1, 0);
-    light.position.set(0, 0, 900);
-    var ambientLight = new THREE.AmbientLight(0x101030);
+    light.position.set(0, 0, 400);
+    // var ambientLight = new THREE.AmbientLight(0x101030);
     scene.add(light);
     var geometry = new THREE.SphereGeometry(64,128, 128);
-    const terrazzo_roughness = textureLoader.load('Terrazzo015_2K_Roughness.jpg')
-    terrazzo_roughness.wrapS = THREE.RepeatWrapping;
-    terrazzo_roughness.wrapT = THREE.RepeatWrapping;
-    terrazzo_roughness.repeat.set(3, 3);
-    const terrazzo_displacement = textureLoader.load('Terrazzo015_2K_Displacement.jpg')
-    terrazzo_displacement.wrapS = THREE.RepeatWrapping;
-    terrazzo_displacement.wrapT = THREE.RepeatWrapping;
-    terrazzo_displacement.repeat.set(3, 3);
-    const terrazzo_normalness = textureLoader.load('Terrazzo015_2K_NormalDX.jpg')
-    terrazzo_normalness.wrapS = THREE.RepeatWrapping;
-    terrazzo_normalness.wrapT = THREE.RepeatWrapping;
-    terrazzo_normalness.repeat.set(3, 3);
-    const terrazzo_color = textureLoader.load('Terrazzo015_2K_Color.jpg')
-    terrazzo_color.wrapS = THREE.RepeatWrapping;
-    terrazzo_color.wrapT = THREE.RepeatWrapping;
-    terrazzo_color.repeat.set(3, 3);
+    // const terrazzo_roughness = textureLoader.load('Terrazzo015_2K_Roughness.jpg')
+    // terrazzo_roughness.wrapS = THREE.RepeatWrapping;
+    // terrazzo_roughness.wrapT = THREE.RepeatWrapping;
+    // terrazzo_roughness.repeat.set(3, 3);
+    // const terrazzo_displacement = textureLoader.load('Terrazzo015_2K_Displacement.jpg')
+    // terrazzo_displacement.wrapS = THREE.RepeatWrapping;
+    // terrazzo_displacement.wrapT = THREE.RepeatWrapping;
+    // terrazzo_displacement.repeat.set(3, 3);
+    // const terrazzo_normalness = textureLoader.load('Terrazzo015_2K_NormalDX.jpg')
+    // terrazzo_normalness.wrapS = THREE.RepeatWrapping;
+    // terrazzo_normalness.wrapT = THREE.RepeatWrapping;
+    // terrazzo_normalness.repeat.set(3, 3);
+    // const terrazzo_color = textureLoader.load('Terrazzo015_2K_Color.jpg')
+    // terrazzo_color.wrapS = THREE.RepeatWrapping;
+    // terrazzo_color.wrapT = THREE.RepeatWrapping;
+    // terrazzo_color.repeat.set(3, 3);
+    var spherebasemat = new THREE.MeshBasicMaterial({
+        color: '#0000ff'
+    }); 
     for (var i = 0; i < 5; i++) {
         var object = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
             //shading: THREE.FlatShading,
-            roughnessMap: terrazzo_roughness,
-            displacementMap: terrazzo_displacement,
-            displacementScale: 0.5,
-            normalMap: terrazzo_normalness,
-            map: terrazzo_color
-            //color: 0x0000ee
+            //roughnessMap: terrazzo_roughness,
+            //displacementMap: terrazzo_displacement,
+            //displacementScale: 0.5,
+            //normalMap: terrazzo_normalness,
+            roughnessMap: texture,
+            color: 'red'
         }));
         //console.log(object);
         switch (i) {
             case 0:
-            camera.add(object);
-                object.userData = {
-                    URL:"https://www.youtube.com/watch?v=DeWrneNglJY"
-                };
-            object.position.set(1200, 1100, 230); //x, y, z
-            var spriteFeatures = makeTextSprite("you want alchemy");
-            spriteFeatures.position.set(1200, 1100, 230);
-            scene.add( spriteFeatures );
-
+                camera.add(object);
+                    object.userData = {
+                        URL:"https://www.youtube.com/watch?v=DeWrneNglJY"
+                    };
+                object.position.set(1200, 1100, 230); //x, y, z
+                var spriteFeatures = makeTextSprite("you want alchemy");
+                spriteFeatures.position.set(1200, 1100, 230);
+                scene.add( spriteFeatures );
                 break;
             case 1:
                 object.userData = {
                     URL:"https://www.youtube.com/watch?v=C8VeYWRBBZY&t=3s"
                 };
-            object.position.set(2450, -1110, 930);
-            var spriteContact = makeTextSprite("birds, pt. 1");
-            spriteContact.position.set(2450, -1110, 930);
-            scene.add( spriteContact );
-
+                object.position.set(2450, -1110, 930);
+                var spriteContact = makeTextSprite("birds, pt. 1");
+                spriteContact.position.set(2450, -1110, 930);
+                scene.add( spriteContact );
                 break;
             case 2:
                 object.userData = {
                     URL:"https://www.youtube.com/watch?v=QcwLiDCENfA"
                 };
-            object.position.set(1400, -700, -2500);
-            var spritesignup = makeTextSprite("slow jam");
-            spritesignup.position.set(1400, -700, -2500);
-            scene.add( spritesignup );
-
+                object.position.set(1400, -700, -2500);
+                var spritesignup = makeTextSprite("slow jam");
+                spritesignup.position.set(1400, -700, -2500);
+                scene.add( spritesignup );
                 break;
             case 3:
                 object.userData = {
                     URL:"https://www.youtube.com/watch?v=wjX6OsvrXd4"
                 };
-            object.position.set(1950, 220, 1200);
-            var spriteAbout = makeTextSprite("folding");
-            spriteAbout.position.set(1950, 220, 1200);
-            scene.add( spriteAbout );
-
+                object.position.set(1950, 220, 1200);
+                var spriteAbout = makeTextSprite("folding");
+                spriteAbout.position.set(1950, 220, 1200);
+                scene.add( spriteAbout );
                 break;
             case 4:
                 object.userData = {
                     URL:"https://www.youtube.com/watch?v=g6DRlyxi8hc"
                 };
-            object.position.set(1650, -755, -1270);
-            var spriteAbout = makeTextSprite("before I let go");
-            spriteAbout.position.set(1650, -755, -1270);
-            scene.add( spriteAbout );
+                object.position.set(1650, -755, -1270);
+                var spriteAbout = makeTextSprite("before I let go");
+                spriteAbout.position.set(1650, -755, -1270);
+                scene.add( spriteAbout );
+                break;
         }
         scene.add(object);
         objects.push(object);
@@ -369,15 +362,15 @@ function init() {
     var renderScene = new RenderPass(scene, camera);
 
     bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), params_bloom.bloomStrength, params_bloom.bloomRadius,  params_bloom.bloomThreshold);
-    /* bloomPass.renderToScreen = true; */
-    //bloomPass.threshold = params.bloomThreshold;
-    //bloomPass.strength = params.bloomStrength;
-    //bloomPass.radius = params.bloomRadius;
+    bloomPass.renderToScreen = true;
+    // bloomPass.threshold = params.bloomThreshold;
+    // bloomPass.strength = params.bloomStrength;
+    // bloomPass.radius = params.bloomRadius;
 
     composer = new EffectComposer( renderer );
     composer.setSize(window.innerWidth,  window.innerHeight);
     composer.addPass( renderScene );
-    composer.addPass( bloomPass );
+    //composer.addPass( bloomPass );
 
 }
 
@@ -391,16 +384,18 @@ function init() {
     function onDocumentMouseDown(event) {
         
         event.preventDefault();
-        var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 -
-            1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
+        var vector = new THREE.Vector3((event.clientX/ window.innerWidth) * 4 - 3, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
+        console.log(vector);
         vector.unproject(camera);
         var raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
         var intersects = raycaster.intersectObjects(objects);
+        console.log(intersects)
         if (intersects.length > 0) {
             window.open(intersects[0].object.userData.URL,"_target");
             intersects[0].object.material.color = new THREE.Color(0x551abb);
             intersects[0].object.material.needsUpdate = true; 
-        }        
+        } 
+      
     }
 
     function createComposer() {
@@ -469,7 +464,6 @@ function init() {
     var clicked = false;
     $(document).ready(function () {
         $(".logo").click(function () {
-            console.log("bambambi")
     
             header = $(this);
             el_text = header.children().find("a")
@@ -515,8 +509,6 @@ function init() {
     function update() {
         
         controls.update();
-        //console.log(nino)
-        //stats.update();
 
     }
 
@@ -524,24 +516,6 @@ function init() {
     var rad = 0.1;
     var increment = 0.001;
     function render() {
-
-        // if(nino != undefined)
-        // {
-        //     if(!nino_moving)
-        //     {
-        //         console.log("nino frozen")
-        //         nino.rotation.copy(camera.rotation)
-        //         nino.position.copy(camera.position)
-        //         nino.updateMatrix();
-        //         nino.rotateOnAxis(axis, rad);
-        //         //rad += increment;
-        //         //nino.rotation.y = Math.PI/2;
-        //         nino.translateZ(-2350);
-        //         nino.translateY(672);
-        //         nino.translateX(1750);
-        //     }
- 
-        // }
         renderer.render(scene, camera);
         composer.render();
     }
